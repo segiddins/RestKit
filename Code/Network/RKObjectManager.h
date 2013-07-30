@@ -292,6 +292,16 @@ RKMappingResult, RKRequestDescriptor, RKResponseDescriptor;
 @property (nonatomic, strong, readwrite) AFHTTPClient *HTTPClient;
 
 /**
+ *	Whether or not HTTP request Operations created by the receiver should execute while the app in the the background by default. The default value is `NO`
+ */
+@property (nonatomic, assign, readwrite) BOOL shouldExecuteNetworkRequestsInBackground;
+
+/**
+ *	If `shouldExecuteNetworkRequestsInBackground` is `YES`, this is the default background expiration handler for HTTP request operations created by the receiver
+ */
+@property (nonatomic, copy, readwrite) void (^defaultBackgroundExpirationHandler)();
+
+/**
  The base URL of the underlying HTTP client.
  */
 @property (nonatomic, readonly) NSURL *baseURL;
