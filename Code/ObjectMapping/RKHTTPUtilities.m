@@ -69,13 +69,14 @@ NSString *RKStringFromRequestMethod(RKRequestMethod method)
 
 RKRequestMethod RKRequestMethodFromString(NSString *methodName)
 {
-    if      ([methodName isEqualToString:@"GET"])     return RKRequestMethodGET;
-    else if ([methodName isEqualToString:@"POST"])    return RKRequestMethodPOST;
-    else if ([methodName isEqualToString:@"PUT"])     return RKRequestMethodPUT;
-    else if ([methodName isEqualToString:@"DELETE"])  return RKRequestMethodDELETE;
-    else if ([methodName isEqualToString:@"HEAD"])    return RKRequestMethodHEAD;
-    else if ([methodName isEqualToString:@"PATCH"])   return RKRequestMethodPATCH;
-    else if ([methodName isEqualToString:@"OPTIONS"]) return RKRequestMethodOPTIONS;
+    NSString *uppercaseMethodName = [methodName uppercaseString];
+    if      ([uppercaseMethodName isEqualToString:@"GET"])     return RKRequestMethodGET;
+    else if ([uppercaseMethodName isEqualToString:@"POST"])    return RKRequestMethodPOST;
+    else if ([uppercaseMethodName isEqualToString:@"PUT"])     return RKRequestMethodPUT;
+    else if ([uppercaseMethodName isEqualToString:@"DELETE"])  return RKRequestMethodDELETE;
+    else if ([uppercaseMethodName isEqualToString:@"HEAD"])    return RKRequestMethodHEAD;
+    else if ([uppercaseMethodName isEqualToString:@"PATCH"])   return RKRequestMethodPATCH;
+    else if ([uppercaseMethodName isEqualToString:@"OPTIONS"]) return RKRequestMethodOPTIONS;
     else                                              @throw [NSException exceptionWithName:NSInvalidArgumentException
                                                                                      reason:[NSString stringWithFormat:@"The given HTTP request method name `%@` does not correspond to any known request methods.", methodName]
                                                                                    userInfo:nil];
