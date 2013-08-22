@@ -25,6 +25,14 @@ static NSSet *RKSetWithInvalidAttributesForEntity(NSArray *attributes, NSEntityD
     NSMutableSet *attributesSet = [NSMutableSet setWithArray:attributes];
     NSSet *validAttributeNames = [NSSet setWithArray:[[entity attributesByName] allKeys]];
     [attributesSet minusSet:validAttributeNames];
+    NSMutableSet *validPropertyNames = [NSMutableSet set];
+    Class managedObjectClass = NSClassFromString([entity managedObjectClassName]);
+    for (NSString *key in attributesSet) {
+        if ([managedObjectClass instancesRespondToSelector:NSSelectorFromString(key)]) {
+            [validPropertyNames addObject:key];
+        }
+    }
+    [attributesSet minusSet:validPropertyNames];
     return attributesSet;
 }
 
