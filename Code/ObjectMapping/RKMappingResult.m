@@ -74,6 +74,16 @@
     return [collection objectAtIndex:0];
 }
 
+- (id)objectForKeyedSubscript:(id)key
+{
+    return [self.dictionary objectForKeyedSubscript:key];
+}
+
+- (id)objectAtIndexedSubscript:(NSUInteger)idx
+{
+    return [self.array objectAtIndexedSubscript:idx];
+}
+
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<%@: %p, results=%@>", NSStringFromClass([self class]), self, self.keyPathToMappedObjects];

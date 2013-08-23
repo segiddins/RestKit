@@ -77,6 +77,10 @@
  */
 - (NSSet *)set;
 
+- (id)objectForKeyedSubscript:(id)key NS_AVAILABLE(10_8, 6_0);
+
+- (id)objectAtIndexedSubscript:(NSUInteger)idx NS_AVAILABLE(10_8, 6_0);
+
 ///----------------------------------------
 /// @name Counting Entries
 ///----------------------------------------
