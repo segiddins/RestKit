@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name         =  'RestKit'
-  s.version      =  '0.20.3'
+  s.version      =  '0.20.4-dev'
   s.summary      =  'RestKit is a framework for consuming and modeling RESTful web resources on iOS and OS X.'
   s.homepage     =  'http://www.restkit.org'
   s.author       =  { 'Blake Watters' => 'blakewatters@gmail.com' }
-  s.source       =  { :git => 'https://github.com/RestKit/RestKit.git', :tag => 'v0.20.3' }
+  s.source       =  { :git => 'https://github.com/RestKit/RestKit.git', :tag => "v#{s.version}" }
   s.license      =  'Apache License, Version 2.0'
   
   # Platform setup
@@ -25,7 +25,7 @@ EOS
   ### Subspecs
   
   s.subspec 'Core' do |cs|
-    cs.source_files =  'Code/*.h', 'Vendor/LibComponentLogging/Core', 'Vendor/LibComponentLogging/NSLog'
+    cs.source_files =  'Code/*.h'
     cs.header_dir   =  'RestKit'
     
     cs.dependency 'RestKit/ObjectMapping'
@@ -36,6 +36,7 @@ EOS
   s.subspec 'ObjectMapping' do |os|
     os.header_dir     = 'RestKit/ObjectMapping'
     os.source_files   = 'Code/ObjectMapping'
+    os.dependency       'RestKit/Support'
   end
   
   s.subspec 'Network' do |ns|
@@ -84,7 +85,7 @@ EOS
   
   s.subspec 'Support' do |ss|
     ss.header_dir     = 'RestKit/Support'
-    ss.source_files   = 'Code/Support'
+    ss.source_files   = 'Code/Support', 'Vendor/LibComponentLogging/Core', 'Vendor/LibComponentLogging/NSLog'
     ss.dependency 'TransitionKit', '1.1.1'
   end
 end
